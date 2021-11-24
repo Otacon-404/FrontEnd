@@ -10,18 +10,18 @@ This a front-end app using angular for NodeJS Exam
 
 This is an example of how to list things you need to use the software and how to install them.
 * NodeJS-exam
-  ```sh
-  Clone https://github.com/Otacon-404/NodeJS-Exam.git
-  ```
+```sh
+Clone https://github.com/Otacon-404/NodeJS-Exam.git
+```
   
  ### Start Project
  * Install NPM Packages
-  ```sh
-  npm install
-  ```
+```sh
+npm install
+```
  * Start the project
-  ```sh
-  npm start
-  ```
+```sh
+npm start
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
