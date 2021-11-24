@@ -1,0 +1,18 @@
+.selectedRow {
+    background-color: skyblue;
+  }
+
+  .container {
+    border: 1px solid rgb(233, 230, 230); 
+    border-radius: 10px;
+  }
+  .container-blue {
+    background-color: #3b90ff; 
+    margin-bottom: 3%;  
+    border: 1px solid rgb(233, 230, 230); 
+    border-radius: 10px;
+  }
+  .table {
+    margin-top: 2%;
+    font-family: 'Roboto', sans-serif;
+  }

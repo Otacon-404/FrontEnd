@@ -1,0 +1,55 @@
+<button class="btn btn-primary" style="margin-top: 2%;" data-bs-toggle="modal" data-bs-target="#formInputModal"> Add Employee </button>
+<div class="modal fade" id="formInputModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="newEmployee" (ngSubmit)="onSubmit(newEmployee)">
+        <div class="modal-body">
+          <div class="row" style="margin-top: 2%;">
+            <div class="col-sm">
+              <span class="input-group-text">First Name</span>
+              <input class="form-control" type="text" formControlName="firstName">
+            </div>
+            <div class="col-sm">
+              <span class="input-group-text">Last Name</span>
+              <input class="form-control" type="text" formControlName="lastName">
+            </div>
+            <div class="col-sm">
+              <span class="input-group-text">Date Of Birth</span>
+              <input class="form-control" type="date" formControlName="dob">
+            </div>
+          </div>
+          <div class="row" style="margin-top: 2%;">
+            <div class="col-sm">
+              <span class="input-group-text">Gender</span>
+              <select class="form-select" formControlName="isMale"  aria-label="Default select example">
+                <!-- <option selected>نوع امر العمل</option> -->
+                <option [ngValue]="true">Male</option>
+                <option [ngValue]="false">Female</option>
+              </select>
+            </div>
+            <div class="col-sm">
+              <span class="input-group-text">Salary</span>
+              <input class="form-control" type="text" formControlName="salary">
+            </div>
+            <div class="col-sm">
+              <span class="input-group-text">Status</span>
+              <select class="form-select" formControlName="isActive"  aria-label="Default select example">
+                <!-- <option selected>نوع امر العمل</option> -->
+                <option [ngValue]="true">Active</option>
+                <option [ngValue]="false">InActive</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button [disabled]="newEmployee.invalid" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

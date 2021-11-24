@@ -1,0 +1,87 @@
+
+<div class="container" style="margin-top: 10%;">
+  <div class="col-sm">
+    <app-Form></app-Form>
+  </div>
+  <input style="margin-top: 2%;" type="text" class="form-control search-filed" placeholder="search" [(ngModel)]="searchText">
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Date Of Birth</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Status</th>
+        <th scope="col">Active Toggle</th>
+        <th scope="col">Edit Employee</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+      <tr *ngFor="let emp of Employees | searchFilter: searchText" style="text-align: center;">
+        <td > {{emp.firstName}} {{emp.lastName}} </td>
+        <td> {{emp.dob | date:'yyyy-MM-dd'}}</td>
+        <td >{{emp.isMale ? 'male' : 'female'}}</td>
+        <td> {{emp.salary.toLocaleString('en')}}$</td>
+        <td> {{emp.isActive ? 'active' : 'inactive'}}</td>
+        <td> <button class="btn btn-danger btn-sm"  (click)="changeStatus(emp._id, emp.isActive)" > Toggle status </button> </td>
+        <td> <button class="btn btn-primary btn-sm" (click)="onclick(emp)" data-bs-toggle="modal" data-bs-target="#formInputedit"> Edit Employee </button> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="modal fade" id="formInputedit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="editedEmployee" (ngSubmit)="onSubmit(editedEmployee)">
+        <div class="modal-body">
+          <div class="row" style="margin-top: 2%;">
+            <div class="col-sm">
+              <span class="input-group-text">First Nfffame</span>
+              <input [ngModel]="newData?.firstName" class="form-control" type="text" formControlName="firstName">
+            </div>
+            <div class="col-sm">
+              <span class="input-group-text">Last Name</span>
+              <input [ngModel]="newData?.lastName" class="form-control" type="text" formControlName="lastName">
+            </div>
+            <div class="col-sm">
+              <span class="input-group-text">Date Of Birth</span>
+              <input [ngModel]="newData?.dob | date:'yyyy-MM-dd'" class="form-control" type="date" formControlName="dob">
+            </div>
+          </div>
+          <div class="row" style="margin-top: 2%;">
+            <div class="col-sm">
+              <span class="input-group-text">Gender</span>
+              <select [ngModel]="newData?.isMale" class="form-select" formControlName="isMale"  aria-label="Default select example">
+                <!-- <option selected>نوع امر العمل</option> -->
+                <option [ngValue]="true">Male</option>
+                <option [ngValue]="false">Female</option>
+              </select>
+            </div>
+            <div class="col-sm">
+              <span class="input-group-text">Salary</span>
+              <input [ngModel]="newData?.salary" class="form-control" type="text" formControlName="salary">
+            </div>
+            <div class="col-sm">
+              <span class="input-group-text">Status</span>
+              <select [ngModel]="newData?.isActive" class="form-select" formControlName="isActive"  aria-label="Default select example">
+                <!-- <option selected>نوع امر العمل</option> -->
+                <option [ngValue]=true>Active</option>
+                <option [ngValue]=false>InActive</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button [disabled]="editedEmployee.invalid" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
